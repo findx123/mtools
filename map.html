@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map - Taxi Booking App</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Initialize OpenStreetMap
+        var map = L.map('map').setView([51.505, -0.09], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Example: Adding markers
+        var marker = L.marker([51.5, -0.09]).addTo(map)
+            .bindPopup('Pickup Location')
+            .openPopup();
+
+        var marker2 = L.marker([51.515, -0.1]).addTo(map)
+            .bindPopup('Dropoff Location')
+            .openPopup();
+
+        // Add event listeners for map clicks
+        map.on('click', function(e) {
+            var latlng = e.latlng;
+            console.log("You clicked the map at " + latlng);
+        });
+    </script>
+</body>
+</html>
